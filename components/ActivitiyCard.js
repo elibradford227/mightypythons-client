@@ -15,7 +15,7 @@ function ActivityCard({ activityObj, onUpdate }) {
       <Card.Img variant="top" src={activityObj.name} />
       <Card.Body>
         <Card.Title>{activityObj.name}</Card.Title>
-        <p>{activityObj.destination}</p>
+        <p>{activityObj.location}</p>
         <Link href={`/activity/${activityObj.firebaseKey}`} passHref>
           <Button variant="success" className="lg">VIEW</Button>
         </Link>
@@ -31,7 +31,7 @@ function ActivityCard({ activityObj, onUpdate }) {
 ActivityCard.propTypes = {
   activityObj: PropTypes.shape({
     name: PropTypes.string,
-    destination: PropTypes.string,
+    location: PropTypes.string,
     description: PropTypes.bool,
     firebaseKey: PropTypes.string,
   }).isRequired,

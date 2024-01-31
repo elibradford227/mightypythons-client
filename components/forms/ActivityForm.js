@@ -8,7 +8,7 @@ import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
-  destination: '',
+  location: '',
   description: '',
 };
 
@@ -59,13 +59,13 @@ function ActivityForm({ obj }) {
         />
       </FloatingLabel>
 
-      {/* Destination INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Destination" className="mb-3">
+      {/* location INPUT  */}
+      <FloatingLabel controlId="floatingInput3" label="Location" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Enter Destination"
-          name="destination"
-          value={formInput.destination}
+          placeholder="Enter Location"
+          name="location"
+          value={formInput.location}
           onChange={handleChange}
           required
         />
@@ -77,7 +77,7 @@ function ActivityForm({ obj }) {
           type="text"
           style={{ height: '100px' }}
           placeholder="Enter Description"
-          name="destination"
+          name="description"
           value={formInput.description}
           onChange={handleChange}
           required
@@ -93,7 +93,7 @@ function ActivityForm({ obj }) {
 ActivityForm.propTypes = {
   obj: PropTypes.shape({
     name: PropTypes.string,
-    destination: PropTypes.string,
+    location: PropTypes.string,
     description: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
