@@ -3,16 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { createActivity, updateActivity } from '../../api/activityData';
 import { useAuth } from '../../utils/context/authContext';
+import { createDestination, updateDestination } from '../../api/destinationData';
 
 const initialState = {
-  name: '',
+  destination: '',
   location: '',
+  climate: '',
+
   description: '',
 };
 
-function ActivityForm({ obj }) {
+function DestForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
@@ -31,13 +33,13 @@ function ActivityForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateActivity(formInput).then(() => router.push(`/activities/${obj.firebaseKey}`));
+      updateDestination(formInput).then(() => router.push(`/destination/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      createActivity(payload).then(({ name }) => {
+      createDestination(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateActivity(patchPayload).then(() => {
-          router.push('/activity');
+        updateDestination(patchPayload).then(() => {
+          router.push('/destination');
         });
       });
     }
@@ -45,25 +47,37 @@ function ActivityForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Activity</h2>
+      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Destination</h2>
 
-      {/* Name INPUT  */}
+      {/* Destination INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Enter a Name"
-          name="name"
-          value={formInput.name}
+          placeholder="Enter a Destination"
+          name="destination"
+          value={formInput.destination}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
 
-      {/* location INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Location" className="mb-3">
+      {/* IMAGE INPUT  */}
+      <FloatingLabel controlId="floatingInput2" label="Destination Image" className="mb-3">
+        <Form.Control
+          type="url"
+          placeholder="Enter an image url"
+          name="image"
+          value={formInput.image}
+          onChange={handleChange}
+          required
+        />
+      </FloatingLabel>
+
+      {/* Location INPUT  */}
+      <FloatingLabel controlId="floatingInput1" label="Location" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Enter Location"
+          placeholder="Enter a Location"
           name="location"
           value={formInput.location}
           onChange={handleChange}
@@ -71,36 +85,35 @@ function ActivityForm({ obj }) {
         />
       </FloatingLabel>
 
-      {/* Description INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Description" className="mb-3">
+      {/* Climate INPUT  */}
+      <FloatingLabel controlId="floatingInput1" label="Climate" className="mb-3">
         <Form.Control
           type="text"
-          style={{ height: '100px' }}
-          placeholder="Enter Description"
-          name="description"
-          value={formInput.description}
+          placeholder="Enter Climate"
+          name="climate"
+          value={formInput.climate}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
-
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Activity</Button>
+      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Destination</Button>
     </Form>
   );
 }
 
-ActivityForm.propTypes = {
+DestForm.propTypes = {
   obj: PropTypes.shape({
-    name: PropTypes.string,
+    destination: PropTypes.string,
+    image: PropTypes.string,
     location: PropTypes.string,
-    description: PropTypes.string,
+    climate: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
 };
 
-ActivityForm.defaultProps = {
+DestForm.defaultProps = {
   obj: initialState,
 };
 
-export default ActivityForm;
+export default DestForm;
