@@ -7,7 +7,8 @@ import { useAuth } from '../../utils/context/authContext';
 import { createDestination, updateDestination } from '../../api/destinationData';
 
 const initialState = {
-  destination: '',
+  name: '',
+  image: '',
   location: '',
   climate: '',
 
@@ -20,7 +21,7 @@ function DestForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.firebaseKey) setFormInput(obj);
+    if (obj.id) setFormInput(obj);
   }, [obj, user]);
 
   const handleChange = (e) => {
@@ -32,12 +33,12 @@ function DestForm({ obj }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
-      updateDestination(formInput).then(() => router.push(`/destination/${obj.firebaseKey}`));
+    if (obj.id) {
+      updateDestination(formInput).then(() => router.push(`/destination/${obj.id}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createDestination(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
+        const patchPayload = { id: name };
         updateDestination(patchPayload).then(() => {
           router.push('/destination');
         });
@@ -47,21 +48,21 @@ function DestForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Destination</h2>
+      <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Destination</h2>
 
       {/* Destination INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Enter a Destination"
-          name="destination"
-          value={formInput.destination}
+          placeholder="Enter a Name"
+          name="name"
+          value={formInput.name}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
 
-      {/* IMAGE INPUT  */}
+      {/* image INPUT  */}
       <FloatingLabel controlId="floatingInput2" label="Destination Image" className="mb-3">
         <Form.Control
           type="url"
@@ -97,18 +98,18 @@ function DestForm({ obj }) {
         />
       </FloatingLabel>
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Destination</Button>
+      <Button type="submit">{obj.id ? 'Update' : 'Create'} Destination</Button>
     </Form>
   );
 }
 
 DestForm.propTypes = {
   obj: PropTypes.shape({
-    destination: PropTypes.string,
+    name: PropTypes.string,
     image: PropTypes.string,
     location: PropTypes.string,
     climate: PropTypes.string,
-    firebaseKey: PropTypes.string,
+    id: PropTypes.string,
   }),
 };
 

@@ -18,7 +18,7 @@ export default function Destination() {
     <>
       <div className="d-flex flex-wrap">
         {destinations.map((destination) => (
-          <DestCard key={destination.firebaseKey} destinationObj={destination} onUpdate={getAllDestinations} />
+          <DestCard key={destination.id} destinationObj={destination} onUpdate={getAllDestinations} />
         ))}
       </div>
     </>
