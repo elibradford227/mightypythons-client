@@ -2,27 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import Link from 'next/link';
-import { deleteActivity } from '../api/activityData';
 
-function ActivityCard({ activityObj, onUpdate }) {
-  const deletethisActivity = () => {
-    if (window.confirm(`Delete ${activityObj.name}?`)) {
-      deleteActivity(activityObj.firebaseKey).then(() => onUpdate());
-    }
-  };
+function ActivityCard({ activityObj }) {
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={activityObj.name} />
       <Card.Body>
         <Card.Title>{activityObj.name}</Card.Title>
-        <p>{activityObj.location}</p>
-        <Link href={`/activity/${activityObj.firebaseKey}`} passHref>
+        <Link href={`/activity/${activityObj.id}`} passHref>
           <Button variant="success" className="lg">VIEW</Button>
         </Link>
-        <Link href={`/activity/edit/${activityObj.firebaseKey}`} passHref>
+        <Link href={`/activity/edit/${activityObj.id}`} passHref>
           <Button variant="warning" className="lg">EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deletethisActivity} className="lg">DELETE</Button>
       </Card.Body>
     </Card>
   );
@@ -31,11 +22,8 @@ function ActivityCard({ activityObj, onUpdate }) {
 ActivityCard.propTypes = {
   activityObj: PropTypes.shape({
     name: PropTypes.string,
-    location: PropTypes.string,
-    description: PropTypes.bool,
-    firebaseKey: PropTypes.string,
+    id: PropTypes.number,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
 export default ActivityCard;
