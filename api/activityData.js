@@ -1,9 +1,7 @@
 import { clientCredentials } from '../utils/client';
 
-const endpoint = clientCredentials.databaseURL;
-
-const getActivities = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/activity.json?orderBy="uid"&equalTo="${uid}"`, {
+const getActivities = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/activities`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -20,20 +18,8 @@ const getActivities = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteActivity = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/activity/${firebaseKey}.json`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => resolve((data)))
-    .catch(reject);
-});
-
-const getSingleActivity = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/activity/${firebaseKey}.json`, {
+const getSingleActivity = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/activities/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -45,7 +31,7 @@ const getSingleActivity = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const createActivity = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/activity.json`, {
+  fetch(`${clientCredentials.databaseURL}/activities`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -53,17 +39,22 @@ const createActivity = (payload) => new Promise((resolve, reject) => {
     body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
+    .then((data) => {
+      resolve(data);
+    })
+    .catch((error) => {
+      console.error('Error: Activity not Created:', error);
+      reject(error);
+    });
 });
 
-const updateActivity = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/activity/${payload.firebaseKey}.json`, {
-    method: 'PATCH',
+const updateActivity = (id, currentActivity) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/activities/${id}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(currentActivity),
   })
     .then((response) => response.json())
     .then((data) => resolve(data))
@@ -75,5 +66,4 @@ export {
   createActivity,
   updateActivity,
   getSingleActivity,
-  deleteActivity,
 };
