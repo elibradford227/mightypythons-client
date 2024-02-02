@@ -22,11 +22,171 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #d4d4d4;
+  color: rgb(48, 69, 172);
   /* background-color: #333333; */
 }
 
 .img {
   border-radius: 50px;
+}
+
+
+
+/* Dont Put Anything Below Here */
+
+/* Buttons for Home Page */
+.red {
+  background-color: #f43f5e;
+}
+
+.blue {
+  background-color: #3b82f6;
+}
+
+.green {
+  background-color: #22c55e;
+}
+
+.scroll-snap-card {
+  height: 150px;
+  width: 250px;
+  scroll-snap-type: y mandatory;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.scroll-snap-card .slide {
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-snap-card .slide p {
+  font-size: 1em;
+  color: white;
+  font-weight: 700;
+}
+
+/* Activity Card CSS */
+.activityCard {
+  margin: 15px;
+  width: 190px;
+  height: 254px;
+  background: rgba(159, 159, 159, 0.751);
+  transition: all 0.4s;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.activityCard:hover {
+  border-radius: 15px;
+  cursor: pointer;
+  transform: scale(1.2);
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+  background: rgba(140, 176, 255, 0.622);
+}
+
+.first-content {
+  height: 100%;
+  width: 100%;
+  transition: all 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  border-radius: 15px;
+}
+
+.activityCard:hover .first-content {
+  height: 0px;
+  opacity: 0;
+}
+
+.second-content {
+  height: 0%;
+  width: 100%;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  transition: all 0.4s;
+  font-size: 0px;
+  transform: rotate(90deg) scale(-1);
+}
+
+.activityCard:hover .second-content {
+  opacity: 1;
+  height: 100%;
+  font-size: 1.8rem;
+  transform: rotate(0deg);
+}
+
+/* Activity Form Card */
+.cardContainer {
+  margin-top: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardForm {
+  width: 500px;
+  height: 350px;
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: inherit;
+  height: inherit;
+  background: rgba(255, 89, 89, 0.669);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+}
+
+.cardForm:hover {
+  transform: scale(1.04) rotate(1deg);
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background: repeating-linear-gradient(48deg, #3023ae 0%, #ff0099 100%);
+  border-radius: 35% 30% 75% 30% / 49% 30% 70% 51%;
+  position: absolute;
+  animation: move-up6 2s ease-in infinite alternate-reverse;
+}
+
+.circle:nth-child(1) {
+  top: -10px;
+  left: -30px;
+}
+
+.circle:nth-child(2) {
+  bottom: -100px;
+  right: -50px;
+  animation-name: move-down1;
+}
+
+@keyframes move-up6 {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes move-down1 {
+  to {
+    transform: translateY(10px);
+  }
 }
 
 /* Loading CSS */
