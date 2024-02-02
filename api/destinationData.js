@@ -1,9 +1,7 @@
 import { clientCredentials } from '../utils/client';
 
-const endpoint = clientCredentials.databaseURL;
-
-const getDestinations = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/destination.json?orderBy="uid"&equalTo="${uid}"`, {
+const getDestinations = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/destination`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -20,8 +18,8 @@ const getDestinations = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteDestination = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/destination/${firebaseKey}.json`, {
+const deleteDestination = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/destination/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -32,8 +30,8 @@ const deleteDestination = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleDestination = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/destination/${firebaseKey}.json`, {
+const getSingleDestination = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/destination/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -45,7 +43,7 @@ const getSingleDestination = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const createDestination = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/destination.json`, {
+  fetch(`${clientCredentials.databaseURL}/destination`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -57,13 +55,13 @@ const createDestination = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateDestination = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/destination/${payload.firebaseKey}.json`, {
-    method: 'PATCH',
+const updateDestination = (id, currentActivity) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/destination/${id}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(currentActivity),
   })
     .then((response) => response.json())
     .then((data) => resolve(data))

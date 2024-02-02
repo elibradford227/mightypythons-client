@@ -6,11 +6,11 @@ import DestForm from '../../../components/forms/DestinationForm';
 export default function EditDestination() {
   const [editItem, setEditItem] = useState({});
   const router = useRouter();
-  const { firebaseKey } = router.query;
+  const { id } = router.query;
 
   useEffect(() => {
-    getSingleDestination(firebaseKey).then(setEditItem);
-  }, [firebaseKey]);
+    getSingleDestination(id).then(setEditItem);
+  }, [id]);
 
   return (<DestForm obj={editItem} />);
 }

@@ -30,12 +30,7 @@ function ActivityForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      const payload = {
-        id: formInput.id,
-        name: formInput.name,
-        bio: formInput.bio,
-      };
-      updateActivity(formInput.id, payload).then(() => router.push('/'));
+      updateActivity(formInput).then(() => router.push(`/activity/${obj.id}`));
     } else {
       const payload = { ...formInput };
       createActivity(payload).then(() => router.push('/'));
@@ -58,25 +53,8 @@ function ActivityForm({ obj }) {
         />
       </FloatingLabel>
 
-<<<<<<< HEAD
-      {/* location INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Location" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter Location"
-          name="location"
-          value={formInput.location}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      {/* Description INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Description" className="mb-3">
-=======
       {/* ROLE INPUT  */}
       <FloatingLabel controlId="floatingInput3" label="Bio" className="mb-3">
->>>>>>> main
         <Form.Control
           type="text"
           style={{ height: '100px' }}

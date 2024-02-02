@@ -11,7 +11,6 @@ const initialState = {
   image: '',
   location: '',
   climate: '',
-
   description: '',
 };
 
@@ -40,7 +39,7 @@ function DestForm({ obj }) {
       createDestination(payload).then(({ name }) => {
         const patchPayload = { id: name };
         updateDestination(patchPayload).then(() => {
-          router.push('/destination');
+          router.push('/destinations');
         });
       });
     }

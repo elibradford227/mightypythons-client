@@ -16,10 +16,10 @@ function DestCard({ destObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{destObj.name}</Card.Title>
         <p>{destObj.climate}</p>
-        <Link href={`/destination/${destObj.id}`} passHref>
+        <Link href={`/destinations/${destObj.id}`} passHref>
           <Button variant="success" className="lg">VIEW</Button>
         </Link>
-        <Link href={`/destination/edit/${destObj.id}`} passHref>
+        <Link href={`/destinations/edit/${destObj.id}`} passHref>
           <Button variant="warning" className="lg">EDIT</Button>
         </Link>
         <Button variant="danger" onClick={deletethisDestination} className="lg">DELETE</Button>
