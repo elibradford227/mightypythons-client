@@ -9,10 +9,14 @@ function ActivityCard({ activityObj }) {
       <Card.Body>
         <Card.Title>{activityObj.name}</Card.Title>
         <Link href={`/activity/${activityObj.id}`} passHref>
-          <Button variant="success" className="lg">VIEW</Button>
+          <Button variant="success" className="lg">
+            VIEW
+          </Button>
         </Link>
         <Link href={`/activity/edit/${activityObj.id}`} passHref>
-          <Button variant="warning" className="lg">EDIT</Button>
+          <Button variant="warning" className="lg">
+            EDIT
+          </Button>
         </Link>
       </Card.Body>
     </Card>
