@@ -4,22 +4,20 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { createActivity, updateActivity } from '../../api/activityData';
-import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
+  id: 0,
   name: '',
-  location: '',
-  description: '',
+  bio: '',
 };
 
 function ActivityForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
-  const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.firebaseKey) setFormInput(obj);
-  }, [obj, user]);
+    if (obj.id) setFormInput(obj);
+  }, [obj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,24 +26,25 @@ function ActivityForm({ obj }) {
       [name]: value,
     }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
-      updateActivity(formInput).then(() => router.push(`/activities/${obj.firebaseKey}`));
+    if (obj.id) {
+      const payload = {
+        id: formInput.id,
+        name: formInput.name,
+        bio: formInput.bio,
+      };
+      updateActivity(formInput.id, payload).then(() => router.push('/'));
     } else {
-      const payload = { ...formInput, uid: user.uid };
-      createActivity(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
-        updateActivity(patchPayload).then(() => {
-          router.push('/activity');
-        });
-      });
+      const payload = { ...formInput };
+      createActivity(payload).then(() => router.push('/'));
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Activity</h2>
+      <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Activity</h2>
 
       {/* Name INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
@@ -59,43 +58,30 @@ function ActivityForm({ obj }) {
         />
       </FloatingLabel>
 
-      {/* location INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Location" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter Location"
-          name="location"
-          value={formInput.location}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
       {/* ROLE INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Description" className="mb-3">
+      <FloatingLabel controlId="floatingInput3" label="Bio" className="mb-3">
         <Form.Control
           type="text"
           style={{ height: '100px' }}
-          placeholder="Enter Description"
-          name="description"
-          value={formInput.description}
+          placeholder="Enter Bio"
+          name="bio"
+          value={formInput.bio}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
 
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Activity</Button>
+      <Button type="submit">{obj.id ? 'Update' : 'Create'} Activity</Button>
     </Form>
   );
 }
 
 ActivityForm.propTypes = {
   obj: PropTypes.shape({
-    name: PropTypes.string,
-    location: PropTypes.string,
-    description: PropTypes.string,
-    firebaseKey: PropTypes.string,
+    id: PropTypes.number,
+    name: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
   }),
 };
 
