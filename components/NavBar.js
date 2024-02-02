@@ -27,7 +27,7 @@ export default function NavBar() {
               <Nav.Link>Activity</Nav.Link>
             </Link>
             <Link passHref href="/destinations">
-              <Nav.Link>Destination</Nav.Link>
+              <Nav.Link>Destinations</Nav.Link>
             </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out

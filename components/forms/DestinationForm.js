@@ -33,7 +33,7 @@ function DestForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      updateDestination(formInput).then(() => router.push(`/destination/${obj.id}`));
+      updateDestination(formInput).then(() => router.push(`/destinations/${obj.id}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createDestination(payload).then(({ name }) => {

@@ -12,7 +12,7 @@ function DestCard({ destObj, onUpdate }) {
   };
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={destObj.image} alt={destObj.location} style={{ height: '400px' }} />
+      <Card.Img variant="top" src={destObj.name} alt={destObj.location} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>{destObj.name}</Card.Title>
         <p>{destObj.climate}</p>

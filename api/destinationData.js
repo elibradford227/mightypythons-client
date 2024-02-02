@@ -1,7 +1,7 @@
 import { clientCredentials } from '../utils/client';
 
 const getDestinations = () => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/destination`, {
+  fetch(`${clientCredentials.databaseURL}/destinations`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ const getDestinations = () => new Promise((resolve, reject) => {
 });
 
 const deleteDestination = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/destination/${id}`, {
+  fetch(`${clientCredentials.databaseURL}/destinations/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const deleteDestination = (id) => new Promise((resolve, reject) => {
 });
 
 const getSingleDestination = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/destination/${id}`, {
+  fetch(`${clientCredentials.databaseURL}/destinations/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const getSingleDestination = (id) => new Promise((resolve, reject) => {
 });
 
 const createDestination = (payload) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/destination`, {
+  fetch(`${clientCredentials.databaseURL}/destinations`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const createDestination = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateDestination = (id, currentActivity) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/destination/${id}`, {
+  fetch(`${clientCredentials.databaseURL}/destinations/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
