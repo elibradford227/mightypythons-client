@@ -1,6 +1,17 @@
 import React from 'react';
-import DestForm from '../../components/forms/DestinationForm';
+import DestinationForm from '../../components/forms/DestinationForm';
 
 export default function AddDestination() {
-  return <DestForm />;
+  return (
+    <div className="cardContainer">
+      <div className="cardForm">
+        <div className="circle" />
+        <div className="circle" />
+        <div className="card-inner">
+          <DestinationForm />
+        </div>
+      </div>
+    </div>
+
+  );
 }

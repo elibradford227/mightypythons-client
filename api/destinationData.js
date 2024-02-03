@@ -8,7 +8,13 @@ const getDestinations = () => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then(resolve)
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
@@ -45,8 +51,13 @@ const createDestination = (payload) => new Promise((resolve, reject) => {
     body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
+    .then((data) => {
+      resolve(data);
+    })
+    .catch((error) => {
+      console.error('Error: Activity not Created:', error);
+      reject(error);
+    });
 });
 
 const updateDestination = (id, currentActivity) => new Promise((resolve, reject) => {
