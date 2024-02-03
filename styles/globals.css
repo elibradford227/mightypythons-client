@@ -18,7 +18,7 @@ a {
 }
 
 body {
-  background-image: url("../public/photos/logo.png");
+  background-image: url("../public/photos/dimlogo.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #d4d4d4;
@@ -30,7 +30,11 @@ body {
   border-radius: 50px;
 }
 
-
+#boxForm {
+background-color: black;
+padding: 20px;
+border-radius: 20px;
+}
 
 /* Dont Put Anything Below Here */
 
