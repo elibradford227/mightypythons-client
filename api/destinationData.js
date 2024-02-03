@@ -21,12 +21,13 @@ const getDestinations = () => new Promise((resolve, reject) => {
 const deleteDestination = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/destinations/${id}`, {
     method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
   })
-    .then((response) => response.json())
-    .then((data) => resolve((data)))
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      resolve();
+    })
     .catch(reject);
 });
 

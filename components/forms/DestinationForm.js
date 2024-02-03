@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
@@ -13,6 +14,7 @@ const initialState = {
   bio: '',
   image: '',
   userId: '',
+  climateId: 0,
 };
 
 function DestinationsForm({ obj }) {
@@ -22,17 +24,18 @@ function DestinationsForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    getClimates(user.uid).then(setClimates);
+    getClimates().then(setClimates);
     if (obj.id) {
       setFormInput({
-        id: formInput.id,
-        name: formInput.name,
-        bio: formInput.bio,
-        image: formInput.image,
+        id: obj.id,
+        name: obj.name,
+        bio: obj.bio,
+        image: obj.image,
         userId: user.id,
+        climateId: obj.climate.id,
       });
     }
-  }, [formInput.bio, formInput.id, formInput.image, formInput.name, obj, user]);
+  }, [obj, user]);
 
   console.warn('formInput', formInput);
 
@@ -44,6 +47,8 @@ function DestinationsForm({ obj }) {
     }));
   };
 
+  console.warn(formInput);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
@@ -53,6 +58,7 @@ function DestinationsForm({ obj }) {
         bio: formInput.bio,
         image: formInput.image,
         userId: user.id,
+        climateId: formInput.climateId,
       };
       updateDestination(formInput.id, payload).then(() => router.push(`/destinations/${obj.id}`));
     } else {
@@ -138,6 +144,7 @@ DestinationsForm.propTypes = {
     name: PropTypes.string.isRequired,
     bio: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    climate: PropTypes.number.isRequired,
   }),
 };
 

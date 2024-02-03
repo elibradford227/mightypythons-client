@@ -1,30 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+// import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { deleteDestination } from '../api/destinationData';
 
-function DestCard({ obj, onUpdate }) {
+function DestCard({ obj }) {
+  // const router = useRouter();
+
   const deletethisDestination = () => {
     if (window.confirm(`Delete ${obj.name}?`)) {
-      deleteDestination(obj.id).then(() => onUpdate());
+      deleteDestination(obj.id).then(() => {
+        window.location.reload();
+      });
     }
   };
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={obj.image} alt={obj.name} style={{ height: '400px' }} />
-      <Card.Body>
-        <Card.Title>{obj.name}</Card.Title>
-        <p>{obj.climate.name}</p>
+    <>
+      <div className="destCard">
+        <div className="destAlign">
+          <span className="red" />
+          <span className="yellow" />
+          <span className="green" />
+        </div>
+
+        <h1>{obj.name}</h1>
+        <p>
+          {obj.climate.name}
+        </p>
         <Link href={`/destinations/${obj.id}`} passHref>
-          <Button variant="success" className="lg">VIEW</Button>
+          <button type="button" className="btn">View</button>
+          {/* <Button variant="warning" className="lg">View</Button> */}
         </Link>
+        <br />
         <Link href={`/destinations/edit/${obj.id}`} passHref>
-          <Button variant="warning" className="lg">EDIT</Button>
+          <button type="button" className="btn">Edit</button>
+          {/* <Button variant="warning" className="lg">EDIT</Button> */}
         </Link>
-        <Button variant="danger" onClick={deletethisDestination} className="lg">DELETE</Button>
-      </Card.Body>
-    </Card>
+        <br />
+        <button type="button" className="btn" onClick={deletethisDestination}>Delete</button>
+      </div>
+    </>
   );
 }
 
@@ -36,7 +51,6 @@ DestCard.propTypes = {
     climate: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
 export default DestCard;
