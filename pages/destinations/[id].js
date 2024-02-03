@@ -8,30 +8,40 @@ export default function ViewDestination() {
   const [destinationDetails, setDestinationDetails] = useState({});
   const router = useRouter();
 
-  // TODO: grab id from url
   const { id } = router.query;
 
-  // TODO: make call to API layer to get the data
   useEffect(() => {
     viewDestinationDetails(id).then(setDestinationDetails);
   }, [id]);
 
   return (
-    <div className="mt-5 d-flex flex-wrap text-black">
-      <div className="d-flex flex-column">
-        <img src={destinationDetails.image} alt={destinationDetails.name} style={{ width: '300px' }} />
-      </div>
-      <Card style={{ width: '60%', margin: '10px' }}>
-        <Card.Body>
-          <div className="text-black ms-5 details">
-            <h1>
-              &#127881; Experience {destinationDetails.name}! &#127881;
-              {destinationDetails.favorite ? '🤍' : ''}
-            </h1> <hr />
-            <p>{destinationDetails.bio || ''}</p>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-4">
+          <div className="d-flex flex-column align-items-start">
+            <img src={destinationDetails.image} alt={destinationDetails.name} style={{ width: '100%', maxWidth: '300px' }} />
           </div>
-        </Card.Body>
-      </Card>
+        </div>
+        <div className="col-md-8">
+          <Card style={{ width: '100%', margin: '10px' }}>
+            <Card.Body>
+              <div className="text-black details text-center">
+                <h1>
+                  &#127881; Experience {destinationDetails.name}! &#127881;
+                  {destinationDetails.favorite ? '🤍' : ''}
+                </h1>
+                <hr />
+                <p>{destinationDetails.bio || ''}</p>
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
+      <div className="row justify-content-center mt-5">
+        <div className="col-md-12 text-center">
+          <h2>ACTIVITIES CARDS GO HERE</h2>
+        </div>
+      </div>
     </div>
   );
 }

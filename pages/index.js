@@ -17,17 +17,17 @@ function Home() {
       <h1>Hello {user.fbUser.displayName}! </h1>
       <br />
       <div className="scroll-snap-card">
-        <div className="slide red">
+        <div className="slide homeRed">
           <Link passHref href="/destinations">
             <Nav.Link>View Destinations</Nav.Link>
           </Link>
         </div>
-        <div className="slide blue">
+        <div className="slide homeBlue">
           <Link passHref href="/destinations/new">
             <Nav.Link>Create Destinations</Nav.Link>
           </Link>
         </div>
-        <div className="slide green">
+        <div className="slide homeGreen">
           <Link passHref href="/activity">
             <Nav.Link>View Activities</Nav.Link>
           </Link>
