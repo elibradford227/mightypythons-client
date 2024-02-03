@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Card } from 'react-bootstrap';
 import viewDestinationDetails from '../../api/mergedData';
 
 export default function ViewDestination() {
@@ -20,17 +21,17 @@ export default function ViewDestination() {
       <div className="d-flex flex-column">
         <img src={destinationDetails.image} alt={destinationDetails.name} style={{ width: '300px' }} />
       </div>
-      <div className="text-black ms-5 details">
-        <h1>
-          Experience {destinationDetails.name}!
-          {destinationDetails.favorite ? ' 🤍' : ''}
-        </h1>
-        <p>{destinationDetails.bio || ''}</p>
-        <hr />
-        <p>
-          {destinationDetails.favorite}
-        </p>
-      </div>
+      <Card style={{ width: '60%', margin: '10px' }}>
+        <Card.Body>
+          <div className="text-black ms-5 details">
+            <h1>
+              &#127881; Experience {destinationDetails.name}! &#127881;
+              {destinationDetails.favorite ? '🤍' : ''}
+            </h1> <hr />
+            <p>{destinationDetails.bio || ''}</p>
+          </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
