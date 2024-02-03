@@ -5,23 +5,36 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
 import { createDestination, updateDestination } from '../../api/destinationData';
+import getClimates from '../../api/climateData';
 
 const initialState = {
+  id: 0,
   name: '',
+  bio: '',
   image: '',
-  location: '',
-  climate: '',
-  description: '',
+  userId: '',
 };
 
-function DestForm({ obj }) {
+function DestinationsForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [climates, setClimates] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.id) setFormInput(obj);
-  }, [obj, user]);
+    getClimates(user.uid).then(setClimates);
+    if (obj.id) {
+      setFormInput({
+        id: formInput.id,
+        name: formInput.name,
+        bio: formInput.bio,
+        image: formInput.image,
+        userId: user.id,
+      });
+    }
+  }, [formInput.bio, formInput.id, formInput.image, formInput.name, obj, user]);
+
+  console.warn('formInput', formInput);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,18 +43,21 @@ function DestForm({ obj }) {
       [name]: value,
     }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      updateDestination(formInput).then(() => router.push(`/destinations/${obj.id}`));
+      const payload = {
+        id: formInput.id,
+        name: formInput.name,
+        bio: formInput.bio,
+        image: formInput.image,
+        userId: user.id,
+      };
+      updateDestination(formInput.id, payload).then(() => router.push(`/destinations/${obj.id}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
-      createDestination(payload).then(({ name }) => {
-        const patchPayload = { id: name };
-        updateDestination(patchPayload).then(() => {
-          router.push('/destinations');
-        });
-      });
+      const payload = { ...formInput, userId: user.id };
+      createDestination(payload).then(() => router.push('/destinations'));
     }
   };
 
@@ -49,11 +65,11 @@ function DestForm({ obj }) {
     <Form onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Destination</h2>
 
-      {/* Destination INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
+      {/* Name INPUT  */}
+      <FloatingLabel controlId="floatingInput1" label="Location" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Enter a Name"
+          placeholder="Enter Location"
           name="name"
           value={formInput.name}
           onChange={handleChange}
@@ -61,7 +77,20 @@ function DestForm({ obj }) {
         />
       </FloatingLabel>
 
-      {/* image INPUT  */}
+      {/* ROLE INPUT  */}
+      <FloatingLabel controlId="floatingInput3" label="Enter Description" className="mb-3">
+        <Form.Control
+          type="text"
+          style={{ height: '100px' }}
+          placeholder="Enter Description"
+          name="bio"
+          value={formInput.bio}
+          onChange={handleChange}
+          required
+        />
+      </FloatingLabel>
+
+      {/* IMAGE INPUT  */}
       <FloatingLabel controlId="floatingInput2" label="Destination Image" className="mb-3">
         <Form.Control
           type="url"
@@ -73,47 +102,47 @@ function DestForm({ obj }) {
         />
       </FloatingLabel>
 
-      {/* Location INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Location" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter a Location"
-          name="location"
-          value={formInput.location}
+      {/* Climate SELECT */}
+      <FloatingLabel controlId="floatingSelect" label="Climate">
+        <Form.Select
+          aria-label="Climate"
+          name="climateId"
           onChange={handleChange}
+          className="mb-3"
+          value={formInput.climateId}
           required
-        />
+        >
+          <option value="">Select a Climate</option>
+          {
+            climates?.map((climate) => (
+              <option
+                key={climate.id}
+                value={climate.id}
+              >
+                {climate.name}
+              </option>
+            ))
+          }
+        </Form.Select>
       </FloatingLabel>
 
-      {/* Climate INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Climate" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter Climate"
-          name="climate"
-          value={formInput.climate}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
       {/* SUBMIT BUTTON  */}
       <Button type="submit">{obj.id ? 'Update' : 'Create'} Destination</Button>
     </Form>
   );
 }
 
-DestForm.propTypes = {
+DestinationsForm.propTypes = {
   obj: PropTypes.shape({
-    name: PropTypes.string,
-    image: PropTypes.string,
-    location: PropTypes.string,
-    climate: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
+    name: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
   }),
 };
 
-DestForm.defaultProps = {
+DestinationsForm.defaultProps = {
   obj: initialState,
 };
 
-export default DestForm;
+export default DestinationsForm;
