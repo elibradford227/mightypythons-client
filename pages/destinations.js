@@ -3,11 +3,13 @@ import { getDestinations } from '../api/destinationData';
 import DestCard from '../components/DestCard';
 
 export default function Destinations() {
-  const [destinations, setDestinations] = useState({});
+  const [destinations, setDestinations] = useState([]);
 
   const getAllDestinations = () => {
     getDestinations().then(setDestinations);
   };
+
+  console.warn(destinations);
 
   useEffect(() => {
     getAllDestinations();
@@ -15,12 +17,15 @@ export default function Destinations() {
   }, []);
 
   return (
-    <>
-      <div className="d-flex flex-wrap">
-        {destinations.map((destination) => (
-          <DestCard key={destination.id} destObj={destination} onUpdate={getAllDestinations} />
-        ))}
-      </div>
-    </>
+    <div className="d-flex flex-wrap">
+      {destinations.map((dest) => (
+        <div>
+          <DestCard
+            key={`dest--${dest.id}`}
+            obj={dest}
+          />
+        </div>
+      ))}
+    </div>
   );
 }
