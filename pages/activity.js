@@ -13,7 +13,7 @@ export default function Activity() {
   }, []);
   return (
     <>
-      <div className="d-flex flex-wrap">
+      <div style={{ margin: '20px' }} className="d-flex flex-wrap">
         {activities.map((activity) => (
           <ActivityCard key={activity.id} activityObj={activity} onUpdate={getAllActivities} />
         ))}

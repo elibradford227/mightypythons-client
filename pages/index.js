@@ -1,5 +1,5 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+import Link from 'next/link';
+import { Nav } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -15,11 +15,24 @@ function Home() {
       }}
     >
       <h1>Hello {user.fbUser.displayName}! </h1>
-      <p>Your Bio: {user.bio}</p>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+      <br />
+      <div className="scroll-snap-card">
+        <div className="slide red">
+          <Link passHref href="/destinations">
+            <Nav.Link>View Destinations</Nav.Link>
+          </Link>
+        </div>
+        <div className="slide blue">
+          <Link passHref href="/destinations/new">
+            <Nav.Link>Create Destinations</Nav.Link>
+          </Link>
+        </div>
+        <div className="slide green">
+          <Link passHref href="/activity">
+            <Nav.Link>View Activities</Nav.Link>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
