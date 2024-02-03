@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { deleteDestination } from '../api/destinationData';
 
-function DestCard({ obj, onUpdate }) {
+function DestCard({ obj }) {
+  // const router = useRouter();
+
   const deletethisDestination = () => {
     if (window.confirm(`Delete ${obj.name}?`)) {
-      deleteDestination(obj.id).then(() => onUpdate());
+      deleteDestination(obj.id).then(() => {
+        window.location.reload();
+      });
     }
   };
   return (
@@ -46,7 +51,6 @@ DestCard.propTypes = {
     climate: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
 export default DestCard;
