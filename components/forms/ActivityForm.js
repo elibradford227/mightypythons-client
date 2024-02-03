@@ -30,12 +30,7 @@ function ActivityForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      const payload = {
-        id: formInput.id,
-        name: formInput.name,
-        bio: formInput.bio,
-      };
-      updateActivity(formInput.id, payload).then(() => router.push('/'));
+      updateActivity(formInput).then(() => router.push(`/activity/${obj.id}`));
     } else {
       const payload = { ...formInput };
       createActivity(payload).then(() => router.push('/'));

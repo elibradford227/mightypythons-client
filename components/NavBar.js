@@ -20,9 +20,9 @@ export default function NavBar() {
             <Image
               src={logo}
               className="img"
-              width={50}
-              height={50}
-              alt="Destination Guide"
+              width={75}
+              height={75}
+              alt="Dwango Hip Hop, Pizza, & Wings Logo"
             />
           </Navbar.Brand>
         </Link>
@@ -34,7 +34,7 @@ export default function NavBar() {
               <Nav.Link>Destinations</Nav.Link>
             </Link>
             <Link passHref href="/activity">
-              <Nav.Link>Acitivities</Nav.Link>
+              <Nav.Link>Activity</Nav.Link>
             </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
