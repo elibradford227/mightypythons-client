@@ -48,7 +48,7 @@ DestCard.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     location: PropTypes.string,
-    climate: PropTypes.string,
+    climate: PropTypes.number,
     id: PropTypes.number,
   }).isRequired,
 };

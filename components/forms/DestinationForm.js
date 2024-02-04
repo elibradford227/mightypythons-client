@@ -37,8 +37,6 @@ function DestinationsForm({ obj }) {
     }
   }, [obj, user]);
 
-  console.warn('formInput', formInput);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -46,8 +44,6 @@ function DestinationsForm({ obj }) {
       [name]: value,
     }));
   };
-
-  console.warn(formInput);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -144,7 +140,7 @@ DestinationsForm.propTypes = {
     name: PropTypes.string.isRequired,
     bio: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    climate: PropTypes.number.isRequired,
+    climate: PropTypes.number,
   }),
 };
 

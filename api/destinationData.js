@@ -74,10 +74,28 @@ const updateDestination = (id, currentActivity) => new Promise((resolve, reject)
     .catch(reject);
 });
 
+const addActivity = (id, activity) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/destinations/${id}/dest_act`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(activity),
+  })
+    .then((data) => {
+      resolve(data);
+    })
+    .catch((error) => {
+      console.error('Error: Item not added:', error);
+      reject(error);
+    });
+});
+
 export {
   getDestinations,
   createDestination,
   updateDestination,
   getSingleDestination,
   deleteDestination,
+  addActivity,
 };

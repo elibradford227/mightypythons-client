@@ -2,11 +2,19 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Card } from 'react-bootstrap';
+import ActivityCard from '../../components/ActivitiyCard';
 import viewDestinationDetails from '../../api/mergedData';
+import ActivityMenu from '../../components/ActivityMenu';
 
 export default function ViewDestination() {
   const [destinationDetails, setDestinationDetails] = useState({});
+  const [modalShow, setModalShow] = React.useState(false);
+  const [activities, setActivities] = useState([]);
   const router = useRouter();
+
+  setTimeout(() => {
+    setActivities(destinationDetails.dest_activities);
+  }, 1);
 
   // TODO: grab id from url
   const { id } = router.query;
@@ -30,8 +38,24 @@ export default function ViewDestination() {
             </h1> <hr />
             <p>{destinationDetails.bio || ''}</p>
           </div>
+
+          {/* modal */}
+          <ActivityMenu destinationId={destinationDetails.id} show={modalShow} onHide={() => setModalShow(false)} />
         </Card.Body>
       </Card>
+      <div style={{
+        display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', margin: '20px',
+      }}
+      >
+        {activities?.map((act) => (
+          <div key={`item--${act.id}`} className="item">
+            <ActivityCard
+              activityObj={act}
+              // destinationDetails={destinationDetails}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
