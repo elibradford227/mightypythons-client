@@ -1,19 +1,31 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import Falling from '../../../components/dontOpen/Falling';
 
 export default function It() {
-  const navigate = useNavigate();
+  const router = useRouter();
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
-      navigate('/oh_no');
-    }, 2000);
-  }, [navigate]);
+    const timer = setTimeout(() => {
+      router.push('/dont/do/oh_no');
+    }, 5000);
+    return () => clearTimeout(timer);
+  });
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     redirect('/');
+  //   }, 5);
+  // }, []);
+  // const route = () => {
+  //   setTimeout(() => {
+  //     <Route exact path="/oh_no" />;
+  //   }, 2000);
+  //   return (<Falling />);
+  // };
   return (
-    <div className="falling">
-      <Falling />
-    </div>
+    <Falling />
   );
 }
