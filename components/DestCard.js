@@ -27,6 +27,9 @@ function DestCard({ obj }) {
         <p>
           {obj.climate.name}
         </p>
+        <p>
+          {obj.favorite}
+        </p>
         <Link href={`/destinations/${obj.id}`} passHref>
           <button type="button" className="btn">View</button>
           {/* <Button variant="warning" className="lg">View</Button> */}
@@ -48,7 +51,8 @@ DestCard.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     location: PropTypes.string,
-    climate: PropTypes.number,
+    climate: PropTypes.string,
+    favorite: PropTypes.bool,
     id: PropTypes.number,
   }).isRequired,
 };
