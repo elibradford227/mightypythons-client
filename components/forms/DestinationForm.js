@@ -39,8 +39,6 @@ function DestinationsForm({ obj }) {
     }
   }, [obj, user]);
 
-  console.warn('formInput', formInput);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -48,8 +46,6 @@ function DestinationsForm({ obj }) {
       [name]: value,
     }));
   };
-
-  console.warn(formInput);
 
   const handleSubmit = (e) => {
     e.preventDefault();

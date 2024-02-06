@@ -9,8 +9,6 @@ export default function Destinations() {
     getDestinations().then(setDestinations);
   };
 
-  console.warn(destinations);
-
   useEffect(() => {
     getAllDestinations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
