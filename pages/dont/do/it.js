@@ -5,7 +5,6 @@ import Falling from '../../../components/dontOpen/Falling';
 
 export default function It() {
   const router = useRouter();
-  // const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -14,17 +13,6 @@ export default function It() {
     return () => clearTimeout(timer);
   });
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     redirect('/');
-  //   }, 5);
-  // }, []);
-  // const route = () => {
-  //   setTimeout(() => {
-  //     <Route exact path="/oh_no" />;
-  //   }, 2000);
-  //   return (<Falling />);
-  // };
   return (
     <Falling />
   );
