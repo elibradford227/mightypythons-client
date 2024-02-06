@@ -32,6 +32,8 @@ export default function ViewDestination() {
                 </h1>
                 <hr />
                 <p>{destinationDetails.bio || ''}</p>
+                <hr />
+                <p>Expect a {destinationDetails.climate?.name} atmosphere!</p>
               </div>
             </Card.Body>
           </Card>
