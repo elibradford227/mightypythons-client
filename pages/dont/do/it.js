@@ -5,6 +5,7 @@ import Falling from '../../../components/dontOpen/Falling';
 
 export default function It() {
   const router = useRouter();
+  // const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -13,7 +14,36 @@ export default function It() {
     return () => clearTimeout(timer);
   });
 
+  // const FirstLine = async () => {
+  //   await delay(1000);
+  //   return (<div>I WARNED YOU!!!</div>);
+  // };
+
   return (
-    <Falling />
+    <>
+
+      <div className="cardMover">
+        <div className="warnedCard">
+          <header style={{
+            color: 'black', fontSize: '50px', textAlign: 'center', marginTop: '10px',
+          }}
+          >
+            I WARNED YOU!!!
+          </header>
+        </div>
+      </div>
+      {/* <FirstLine /> */}
+      <Falling />
+      <div className="cardMover2">
+        <div className="warnedCard2">
+          <header style={{
+            color: 'black', fontSize: '50px', textAlign: 'center', marginTop: '10px',
+          }}
+          >
+            YOU HAVE AWAKENED THE BEAST!!!
+          </header>
+        </div>
+      </div>
+    </>
   );
 }
