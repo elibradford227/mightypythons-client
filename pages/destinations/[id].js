@@ -36,7 +36,7 @@ export default function ViewDestination() {
               <div className="text-black details text-center">
                 <h1>
                   &#127881; Experience {destinationDetails.name}! &#127881;
-                  {destinationDetails.favorite ? '🤍' : ''}
+                  {destinationDetails.favorite ? '&#10084;' : ''}
                 </h1>
                 <hr />
                 <p>{destinationDetails.bio || ''}</p>

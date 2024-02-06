@@ -158,7 +158,7 @@ DestinationsForm.propTypes = {
     name: PropTypes.string.isRequired,
     bio: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    climate: PropTypes.number.isRequired,
+    climate: PropTypes.string.isRequired,
     favorite: PropTypes.bool.isRequired,
   }),
 };
