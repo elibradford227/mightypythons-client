@@ -15,6 +15,7 @@ const initialState = {
   image: '',
   userId: '',
   climateId: 0,
+  favorite: false,
 };
 
 function DestinationsForm({ obj }) {
@@ -33,6 +34,7 @@ function DestinationsForm({ obj }) {
         image: obj.image,
         userId: user.id,
         climateId: obj.climate.id,
+        favorite: obj.favorite,
       });
     }
   }, [obj, user]);
@@ -59,6 +61,7 @@ function DestinationsForm({ obj }) {
         image: formInput.image,
         userId: user.id,
         climateId: formInput.climateId,
+        favorite: formInput.favorite,
       };
       updateDestination(formInput.id, payload).then(() => router.push(`/destinations/${obj.id}`));
     } else {
@@ -132,6 +135,21 @@ function DestinationsForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
+      <Form.Check
+        className="text-white mb-3"
+        type="switch"
+        id="favorite"
+        name="favorite"
+        label="Favorite?"
+        checked={formInput.favorite}
+        onChange={(e) => {
+          setFormInput((prevState) => ({
+            ...prevState,
+            favorite: e.target.checked,
+          }));
+        }}
+      />
+
       {/* SUBMIT BUTTON  */}
       <Button type="submit">{obj.id ? 'Update' : 'Create'} Destination</Button>
     </Form>
@@ -145,6 +163,7 @@ DestinationsForm.propTypes = {
     bio: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     climate: PropTypes.number.isRequired,
+    favorite: PropTypes.bool.isRequired,
   }),
 };
 
