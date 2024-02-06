@@ -36,7 +36,7 @@ export default function Sheep() {
                 console.log('HIT');
 
                 alert(
-                  'SHEEEEEEP! You got me HEHE!',
+                  'Oh No!! You got me this time!!',
                 );
               }}
             >

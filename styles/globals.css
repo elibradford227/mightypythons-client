@@ -803,7 +803,7 @@ border-radius: 20px;
 .sheep {
   position: relative;
   margin: auto;
-  offset-path: path("M 2200 2500 C 2000 1000 0 1000 -400 2000");
+  offset-path: path("M 3300 500 C 1500 200 0 1000 -400 2000");
   offset-rotate: reverse;
   /* C200,0 2000,0 2000,1000"); */
   animation: sheep-walking-cycle ease-out 3s infinite;
@@ -1340,7 +1340,7 @@ border-radius: 20px;
 .light-button button.bt {
   margin-left: 50px;
   position: relative;
-  height: 50px;
+  height: 70px;
   display: flex;
   align-items: flex-end;
   outline: none;
@@ -1442,6 +1442,20 @@ border-radius: 20px;
   margin-top: 400px;
   width: 1000px;
   height: 100px;
+  border-radius: 50px;
+  background: #ff0000;
+  box-shadow: 5px 5px 15px #000000,
+    -5px -5px 15px #ff3232;
+}
+.cardMover3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.warnedCard3 {
+  width: 500px;
+  height: 50px;
   border-radius: 50px;
   background: #ff0000;
   box-shadow: 5px 5px 15px #000000,
