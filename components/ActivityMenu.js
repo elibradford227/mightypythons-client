@@ -65,7 +65,7 @@ function ActivityMenu({ destinationId }) {
 
   return (
     <>
-      <button className="button" onClick={handleShow} type="button">Add Activity</button>
+      <Button className="button" onClick={handleShow} type="button">Add Activity</Button>
       <Modal
         show={modalShow}
         onHide={handleClose}

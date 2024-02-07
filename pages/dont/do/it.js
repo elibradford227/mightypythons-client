@@ -22,26 +22,28 @@ export default function It() {
   return (
     <>
 
-      <div className="cardMover">
-        <div className="warnedCard">
-          <header style={{
-            color: 'black', fontSize: '50px', textAlign: 'center', marginTop: '10px',
-          }}
-          >
-            I WARNED YOU!!!
-          </header>
+      <div className="blackBG">
+        <div className="cardMover">
+          <div className="warnedCard">
+            <header style={{
+              color: 'black', fontSize: '50px', textAlign: 'center', marginTop: '10px',
+            }}
+            >
+              I WARNED YOU!!!
+            </header>
+          </div>
         </div>
-      </div>
-      {/* <FirstLine /> */}
-      <Falling />
-      <div className="cardMover2">
-        <div className="warnedCard2">
-          <header style={{
-            color: 'black', fontSize: '50px', textAlign: 'center', marginTop: '10px',
-          }}
-          >
-            YOU HAVE AWAKENED THE BEAST!!!
-          </header>
+        {/* <FirstLine /> */}
+        <Falling />
+        <div className="cardMover2">
+          <div className="warnedCard2">
+            <header style={{
+              color: 'black', fontSize: '50px', textAlign: 'center', marginTop: '10px',
+            }}
+            >
+              YOU HAVE AWAKENED THE BEAST!!!
+            </header>
+          </div>
         </div>
       </div>
     </>
