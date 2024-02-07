@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { Nav } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
@@ -15,6 +16,16 @@ function Home() {
       }}
     >
       <h1>Hello {user.fbUser.displayName}! </h1>
+      <div> <img
+        src={user.fbUser.photoURL}
+        style={{
+          width: '140px',
+          height: '140px',
+          borderRadius: '50%',
+        }}
+        alt="profile avatar"
+      />
+      </div>
       <br />
       <div className="scroll-snap-card">
         <div className="slide homeRed">
