@@ -10,7 +10,6 @@ import {
 } from 'react-bootstrap';
 import logo from '../public/photos/logo.png';
 import { signOut } from '../utils/auth';
-import SearchBar from './SearchBar';
 
 export default function NavBar() {
   return (
@@ -37,7 +36,6 @@ export default function NavBar() {
             <Link passHref href="/activity">
               <Nav.Link>Activity</Nav.Link>
             </Link>
-            <SearchBar />
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
