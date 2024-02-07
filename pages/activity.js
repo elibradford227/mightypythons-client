@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
+import Head from 'next/head';
 import { getActivities } from '../api/activityData';
 import ActivityCard from '../components/ActivitiyCard';
 
@@ -15,6 +16,9 @@ export default function Activity() {
   }, []);
   return (
     <>
+      <Head>
+        <title>Activity</title>
+      </Head>
       <div className="text-center my-4">
         <Link href="/activity/new" passHref>
           <Button>Add Activity</Button>

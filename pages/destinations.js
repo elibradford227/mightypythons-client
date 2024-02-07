@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
+import Head from 'next/head';
 import SearchBar from '../components/SearchBar';
 import { getDestinations } from '../api/destinationData';
 import DestCard from '../components/DestCard';
@@ -19,6 +20,9 @@ export default function Destinations() {
 
   return (
     <>
+      <Head>
+        <title>Destinations</title>
+      </Head>
       <div className="input">
         <SearchBar />
       </div>
