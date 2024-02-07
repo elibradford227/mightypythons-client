@@ -1,7 +1,7 @@
 import React from 'react';
 import Sheep from '../../../components/dontOpen/Sheep';
 
-export default function ohNo() {
+export default function OhNo() {
   return (
     <div>
       <div className="cardMover3">
