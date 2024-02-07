@@ -31,7 +31,7 @@ export default function ViewDestination() {
           </div>
         </div>
         <div className="col-md-8">
-          <Card style={{ width: '100%', margin: '10px', background: 'linear-gradient(to right, lightblue, lightgreen, yellow)' }}>
+          <Card className="singleDestCard">
             <Card.Body>
               <div className="text-black details text-center">
                 <h1 style={{ fontFamily: 'Arial', fontSize: '50px', fontStyle: 'italic' }}>
