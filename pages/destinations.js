@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import Link from 'next/link';
+import SearchBar from '../components/SearchBar';
 import { getDestinations } from '../api/destinationData';
 import DestCard from '../components/DestCard';
-import SearchBar from '../components/SearchBar';
 
 export default function Destinations() {
   const [destinations, setDestinations] = useState([]);
@@ -29,6 +31,11 @@ export default function Destinations() {
             />
           </div>
         ))}
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Link passHref href="/destinations/new">
+            <Button>Create A New Destination</Button>
+          </Link>
+        </div>
       </div>
     </>
   );
