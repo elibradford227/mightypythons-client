@@ -28,7 +28,7 @@ function DestCard({ obj }) {
           {obj.climate.name}
         </p>
         <p>
-          {obj.favorite}
+          {obj.favorite ? '❤️' : ''}
         </p>
         <Link href={`/destinations/${obj.id}`} passHref>
           <button type="button" className="btn">View</button>
