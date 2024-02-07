@@ -139,6 +139,7 @@ function DestinationsForm({ obj }) {
           id="favorite"
           name="favorite"
           label="Favorite?"
+          value={formInput.favorite}
           checked={formInput.favorite}
           onChange={(e) => {
             setFormInput((prevState) => ({

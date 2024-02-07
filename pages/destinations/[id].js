@@ -31,12 +31,12 @@ export default function ViewDestination() {
           </div>
         </div>
         <div className="col-md-8">
-          <Card style={{ width: '100%', margin: '10px' }}>
+          <Card style={{ width: '100%', margin: '10px', background: 'linear-gradient(to right, lightblue, lightgreen, yellow)' }}>
             <Card.Body>
               <div className="text-black details text-center">
-                <h1>
-                  &#127881; Experience {destinationDetails.name}! &#127881;
-                  {destinationDetails.favorite ? '🤍' : ''}
+                <h1 style={{ fontFamily: 'Arial', fontSize: '50px', fontStyle: 'italic' }}>
+                  ✈ Experience {destinationDetails.name}! ✈
+                  {destinationDetails.favorite ? '❤️' : ''}
                 </h1>
                 <hr />
                 <p>{destinationDetails.bio || ''}</p>
