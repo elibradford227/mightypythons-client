@@ -2,14 +2,27 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 // import './Sheep.css';
 
 export default function Sheep() {
   const [visible, setVisible] = useState(true);
   const [counter, setCounter] = useState(0);
 
+  const router = useRouter();
+
+  const youWin = () => {
+    if (window.confirm('You Win!! You Defeated The Beast!!')) {
+      router.push('/');
+    }
+  };
+
   const handleClick1 = () => {
     setCounter(counter + 1);
+
+    if (counter === 2) {
+      youWin();
+    }
   };
 
   useEffect(() => {
