@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react-hooks/exhaustive-deps */
 // import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -131,7 +132,27 @@ function DestinationsForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
-      <Form.Check
+      <h5 style={{ color: 'black' }}>Favorite</h5>
+      <label className="switch">
+        <input
+          type="checkbox"
+          id="favorite"
+          name="favorite"
+          label="Favorite?"
+          checked={formInput.favorite}
+          onChange={(e) => {
+            setFormInput((prevState) => ({
+              ...prevState,
+              favorite: e.target.checked,
+            }));
+          }}
+        />
+        <span className="slider" />
+      </label>
+
+      <br />
+
+      {/* <Form.Check
         className="text-white mb-3"
         type="switch"
         id="favorite"
@@ -144,7 +165,7 @@ function DestinationsForm({ obj }) {
             favorite: e.target.checked,
           }));
         }}
-      />
+      /> */}
 
       {/* SUBMIT BUTTON  */}
       <Button type="submit">{obj.id ? 'Update' : 'Create'} Destination</Button>
