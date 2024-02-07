@@ -10,6 +10,7 @@ import {
 } from 'react-bootstrap';
 import logo from '../public/photos/logo.png';
 import { signOut } from '../utils/auth';
+import DontButton from './dontOpen/dontButton';
 
 export default function NavBar() {
   return (
@@ -39,6 +40,7 @@ export default function NavBar() {
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
+            <DontButton />
           </Nav>
         </Navbar.Collapse>
       </Container>
