@@ -949,6 +949,7 @@ input:checked+.slider:before {
 }
 
 .sheep .wool-shadowlayer .piece-of-wool {
+  border: black solid 1px;
   background: #eee;
   z-index: 1;
   margin-bottom: -8px;
@@ -964,6 +965,7 @@ input:checked+.slider:before {
 }
 
 .sheep .wool .piece-of-wool-1 {
+  border: black solid 1px;
   width: 160px;
   height: 140px;
   border-radius: 160px / 140px;
@@ -972,6 +974,7 @@ input:checked+.slider:before {
 }
 
 .sheep .wool .piece-of-wool-2 {
+  border: black solid 1px;
   width: 70px;
   height: 70px;
   -webkit-border-radius: 35px;
@@ -982,6 +985,7 @@ input:checked+.slider:before {
 }
 
 .sheep .wool .piece-of-wool-3 {
+  border: black solid 1px;
   width: 80px;
   height: 80px;
   -webkit-border-radius: 40px;
@@ -992,6 +996,7 @@ input:checked+.slider:before {
 }
 
 .sheep .wool .piece-of-wool-4 {
+  border: black solid 1px;
   width: 90px;
   height: 90px;
   -webkit-border-radius: 45px;
@@ -1002,6 +1007,7 @@ input:checked+.slider:before {
 }
 
 .sheep .wool .piece-of-wool-5 {
+  border: black solid 1px;
   width: 50px;
   height: 50px;
   -webkit-border-radius: 25px;
@@ -1073,6 +1079,7 @@ input:checked+.slider:before {
 
 .sheep .head .head-face,
 .sheep .head .head-shadow {
+  border: black solid 1px;
   position: absolute;
   left: 0;
   top: 0;
@@ -1084,12 +1091,14 @@ input:checked+.slider:before {
 }
 
 .sheep .head .head-shadow {
+  border: black solid 1px;
   background: #eee;
   margin: 3px 0 0 5px;
   z-index: 0;
 }
 
 .sheep .head .head-face-front {
+  
   width: 85px;
   height: 110px;
   -webkit-border-radius: 42.5px / 55px;
@@ -1793,4 +1802,182 @@ input:checked+.slider:before {
     filter: drop-shadow(46px 36px 28px rgba(64, 144, 181, 0.3411764706))
       drop-shadow(-55px -40px 28px #9e30a9);
   }
+}
+
+/* sheep Card */
+.sheepCard {
+  width: 1000px;
+  height: 1000px;
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+}
+
+.sheepCard__content {
+  background: rgb(5, 6, 45);
+  border-radius: 17px;
+  width: 100%;
+  height: 100%;
+}
+
+/* fireworks */
+
+.transparent {
+  background-color: #00ff55;
+}
+
+@keyframes firework {
+  0% {
+    transform: translate(var(--x), var(--initialY));
+    width: var(--initialSize);
+    opacity: 1;
+  }
+
+  50% {
+    width: 0.5vmin;
+    opacity: 1;
+  }
+
+  100% {
+    width: var(--finalSize);
+    opacity: 0;
+  }
+}
+
+/* @keyframes fireworkPseudo {
+  0% { transform: translate(-50%, -50%); width: var(--initialSize); opacity: 1; }
+  50% { width: 0.5vmin; opacity: 1; }
+  100% { width: var(--finalSize); opacity: 0; }
+}
+ */
+.firework,
+.firework::before,
+.firework::after {
+  --initialSize: 1vmin;
+  --finalSize: 60vmin;
+  --particleSize: 0.4vmin;
+  --color1: rgb(198, 198, 0);
+  --color2: rgb(175, 168, 102);
+  --color3: rgb(147, 147, 147);
+  --color4: rgb(0, 186, 0);
+  --color5: rgb(178, 152, 0);
+  --color6: rgb(45, 133, 85);
+  --y: -30vmin;
+  --x: -50%;
+  --initialY: 60vmin;
+  content: "";
+  animation: firework 2s infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, var(--y));
+  width: var(--initialSize);
+  aspect-ratio: 1;
+  background:
+    /*
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 0% 0%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 100% 0%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 100% 100%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 0% 100%,
+    */
+
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 50% 0%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 50%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 50% 100%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 0% 50%,
+
+    /* bottom right */
+    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 80% 90%,
+    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 95% 90%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 90% 70%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 60%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 55% 80%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 70% 77%,
+
+    /* bottom left */
+    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 22% 90%,
+    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 45% 90%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 70%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 10% 60%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 31% 80%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 28% 77%,
+    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 13% 72%,
+
+    /* top left */
+    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 80% 10%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 95% 14%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 90% 23%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 100% 43%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 85% 27%,
+    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 77% 37%,
+    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 60% 7%,
+
+    /* top right */
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 22% 14%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 45% 20%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 34%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 10% 29%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 31% 37%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 28% 7%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 13% 42%;
+  background-size: var(--initialSize) var(--initialSize);
+  background-repeat: no-repeat;
+}
+
+.firework::before {
+  --x: -50%;
+  --y: -50%;
+  --initialY: -50%;
+  /*   transform: translate(-20vmin, -2vmin) rotate(40deg) scale(1.3) rotateY(40deg); */
+  transform: translate(-50%, -50%) rotate(40deg) scale(1.3) rotateY(40deg);
+  /*   animation: fireworkPseudo 2s infinite; */
+}
+
+.firework::after {
+  --x: -50%;
+  --y: -50%;
+  --initialY: -50%;
+  /*   transform: translate(44vmin, -50%) rotate(170deg) scale(1.15) rotateY(-30deg); */
+  transform: translate(-50%, -50%) rotate(170deg) scale(1.15) rotateY(-30deg);
+  /*   animation: fireworkPseudo 2s infinite; */
+}
+
+.firework:nth-child(2) {
+  --x: 30vmin;
+}
+
+.firework:nth-child(2),
+.firework:nth-child(2)::before,
+.firework:nth-child(2)::after {
+  --color1: rgb(173, 131, 138);
+  --color2: rgb(176, 94, 176);
+  --color3: rgb(190, 0, 190);
+  --color4: rgb(162, 84, 160);
+  --color5: rgb(155, 112, 155);
+  --color6: rgb(159, 159, 173);
+  --finalSize: 50vmin;
+  left: 30%;
+  top: 60%;
+  animation-delay: -0.25s;
+}
+
+.firework:nth-child(3) {
+  --x: -30vmin;
+  --y: -50vmin;
+}
+
+.firework:nth-child(3),
+.firework:nth-child(3)::before,
+.firework:nth-child(3)::after {
+  --color1: rgb(0, 185, 185);
+  --color2: rgb(160, 183, 183);
+  --color3: rgb(131, 162, 173);
+  --color4: rgb(127, 173, 173);
+  --color5: rgb(104, 161, 183);
+  --color6: rgb(170, 170, 185);
+  --finalSize: 40vmin;
+  left: 70%;
+  top: 60%;
+  animation-delay: -0.4s;
 }
