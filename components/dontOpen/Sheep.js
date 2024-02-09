@@ -3,20 +3,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-// import './Sheep.css';
 
 export default function Sheep() {
   const [visible, setVisible] = useState(true);
   const [counter, setCounter] = useState(0);
 
   const router = useRouter();
-
-  // const youWin = () => {
-  //   if (window.confirm('You Win!! You Defeated The Beast!!')) {
-  //     router.push('/dont/do/you_win');
-  //   }
-  // };
-
   const handleClick1 = () => {
     setCounter(counter + 1);
 
@@ -57,10 +49,6 @@ export default function Sheep() {
                     style={{ cursor: 'grab' }}
                     onClick={() => {
                       console.log(counter);
-
-                      // alert(
-                      //   'Oh No!! You got me this time!!',
-                      // );
 
                       handleClick1();
                     }}
