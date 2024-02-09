@@ -8,6 +8,14 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -1445,7 +1453,7 @@ input:checked+.slider:before {
 
 .light-button button.bt .light-holder {
   position: absolute;
-  height: 75px;
+  height: 65px;
   width: 40px;
   display: flex;
   flex-direction: column;

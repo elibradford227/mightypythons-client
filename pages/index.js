@@ -12,15 +12,17 @@ function Home() {
         <title>Home</title>
       </Head>
       <div
-        className="text-center d-flex flex-column justify-content-center align-content-center"
+        className="home"
         style={{
           height: '90vh',
           padding: '30px',
-          maxWidth: '400px',
+          maxWidth: '450px',
           margin: '0 auto',
         }}
       >
-        <h1>Hello {user.fbUser.displayName}! </h1>
+        {/* <h3>Hello {user.fbUser.displayName}! </h3> */}
+        <h1>Welcome to Trip Trekker {user.fbUser.displayName}!</h1>
+        <br />
         <img
           src={user.fbUser.photoURL}
           style={{
@@ -31,7 +33,7 @@ function Home() {
           alt="profile avatar"
         />
         <br />
-        <div className="scroll-snap-card">
+        <div className="scroll-snap-card" style={{ fontWeight: 'bold' }}>
           <div className="slide homeRed">
             <Link passHref href="/destinations">
               <Nav.Link>View Destinations</Nav.Link>
