@@ -61,6 +61,7 @@ border-radius: 20px;
 }
 
 .scroll-snap-card {
+  box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.705);
   height: 150px;
   width: 250px;
   scroll-snap-type: y mandatory;
