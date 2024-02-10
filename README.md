@@ -1,3 +1,5 @@
+https://www.loom.com/share/8ad73fdd228c4a628c61a8a686dd60ab?sid=ade5d708-7a0e-44b2-9579-7858c8da8d63
+
 # React/Next.js Django Auth Template
 
 ## Topics
